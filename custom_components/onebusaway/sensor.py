@@ -88,9 +88,9 @@ class OneBusAwaySensor(SensorEntity):
         current = time() * 1000
         # We want the soonest time that is after the current time
         departures = [
-            d["scheduledDepartureTime"]
+            d["predictedDepartureTime"]
             for d in self.data.get("data")["entry"]["arrivalsAndDepartures"]
-            if d["scheduledDepartureTime"] > current
+            if d["predictedDepartureTime"] > current
         ]
         departure = min(departures) / 1000
         return datetime.fromtimestamp(departure, timezone.utc)
